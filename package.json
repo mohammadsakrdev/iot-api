@@ -1,0 +1,24 @@
+{
+  "name": "iot-api",
+  "version": "1.0.0",
+  "description": "back end service using nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "start-server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohammadsakrdev/iot-api.git"
+  },
+  "author": "Mohammad Sakr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohammadsakrdev/iot-api/issues"
+  },
+  "homepage": "https://github.com/mohammadsakrdev/iot-api#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
