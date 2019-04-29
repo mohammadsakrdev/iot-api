@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
+// Create Schema
 const userSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     required: true
@@ -11,8 +15,11 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  resetToken: String,
-  resetTokenExpiration: Date,
+  role: { type: String, default: "member" },
+  date: {
+    type: Date,
+    default: Date.now
+  },
   cart: {
     items: [
       {
@@ -24,8 +31,17 @@ const userSchema = new Schema({
         quantity: { type: Number, required: true }
       }
     ]
+  },
+  isActive: {
+    type: Boolean,
+    default: true
   }
 });
+
+// methods ======================
+// we have two type of methods: 'methods', and 'statics'.
+// 'methods' are private to instances of the object User, which allows the use of 'this' keyword.
+// 'statics' are attached to the user object, so that you don't need an instance of the object created with the keyword 'new' to actually call the function.
 
 userSchema.methods.addToCart = function(product) {
   const cartProductIndex = this.cart.items.findIndex(cp => {
@@ -67,4 +83,16 @@ userSchema.methods.clearCart = function() {
   return this.save();
 };
 
-module.exports = mongoose.model("User", userSchema);
+userSchema.methods.isMember = function() {
+  return this.role === "member";
+};
+
+userSchema.methods.isAdmin = function() {
+  return this.role === "admin";
+};
+
+userSchema.methods.isUserActive = function() {
+  return this.isActive;
+};
+
+module.exports = User = mongoose.model("users", userSchema);

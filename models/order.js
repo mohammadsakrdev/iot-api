@@ -12,6 +12,14 @@ const orderSchema = new Schema({
   user: {
     email: { type: String, required: true },
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true }
+  },
+  inProgress: {
+    type: Boolean,
+    default: true
+  },
+  isRejected: {
+    type: Boolean,
+    default: false
   }
 });
 
